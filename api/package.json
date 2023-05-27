@@ -4,8 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node app.js",
-    "devStart": "nodemon app.js"
+    "start": "node index.js",
+    "devStart": "nodemon index.js",  
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix",
+    "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc"
   },
   "keywords": [],
   "author": "",
@@ -16,6 +19,9 @@
     "mongoose": "^7.2.1"
   },
   "devDependencies": {
-    "nodemon": "^2.0.22"
+    "eslint": "^8.41.0",
+    "eslint-config-prettier": "^8.8.0",
+    "nodemon": "^2.0.22",
+    "prettier": "^2.8.8"
   }
 }
