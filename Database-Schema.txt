@@ -1,0 +1,19 @@
+User:
+  - First Name (string)
+  - Last Name (string)
+  - email (string)
+  - password (string)
+  - chats : [chat]
+
+
+chat : 
+  - name (string)
+  - members [user]
+  - message: [message]
+
+
+message
+  - from : (User)
+  - content : (String)
+  
+  
