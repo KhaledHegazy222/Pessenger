@@ -1,0 +1,22 @@
+version: "3.4"
+
+services:
+  frontend:
+    build:
+      context: frontend
+      target: production
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    ports:
+      - 3000:3000
+
+  api:
+    build:
+      context: api
+      target: development
+    volumes:
+      - ./api:/app
+      - /app/node_modules
+    ports:
+      - 3001:3001
