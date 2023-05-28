@@ -19,7 +19,7 @@ WORKDIR /app
 COPY package* ./
 COPY ./ ./
 
-RUN npm install --prefer-offline
+RUN npm install
 
 RUN npm run build
 
