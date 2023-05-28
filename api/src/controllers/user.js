@@ -21,11 +21,14 @@ exports.signup = async (req, res) => {
   if (user !== null) {
     res.status(400).json({ error: "this email has been already register" });
   }
+  try {
+    user = await User.create({ first_name, last_name, email, password });
 
-  user = await User.create({ first_name, last_name, email, password });
-
-  const token = jwt.sign(user.toObject(), ACCESS_TOKEN_SECRET);
-  return res.json({ token });
+    const token = jwt.sign(user.toObject(), ACCESS_TOKEN_SECRET);
+    return res.json({ token });
+  } catch (error) {
+    return res.status(400).json({ error: error.toString() });
+  }
 };
 
 exports.logout = async (req, res) => {

@@ -1,16 +1,9 @@
 import "@fontsource/inter";
 import "./App.css";
+import routes from "./pages/routes";
 
-import Hero from "./components/Landing Page/Hero/Hero";
-
-import Navbar from "./components/Navbar";
 function App() {
-  return (
-    <div>
-      <Navbar />
-      <Hero />
-    </div>
-  );
+  return <div>{routes}</div>;
 }
 
 export default App;

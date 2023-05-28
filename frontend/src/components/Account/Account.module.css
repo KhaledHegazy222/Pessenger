@@ -1,0 +1,152 @@
+.body {
+  display: flex;
+  min-height: 100vh;
+  height: 100%;
+  padding: 30px;
+}
+
+.bodyContent {
+  padding: 30px;
+  width: 35%;
+  align-self: center;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: -3px 1px 7px 4px rgb(206, 197, 193);
+  border-radius: 20px;
+  padding: 30px 50px;
+  position: relative;
+  left: 5%;
+  background-color: white;
+}
+
+.bodyContent > h2 {
+  margin-bottom: 20px;
+}
+.signupWithGoogle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: max-content;
+  gap: 10px;
+  height: 40px;
+  border: 2px solid rgb(127, 141, 209);
+  border-radius: 5px;
+  padding: 0 20px;
+  margin: 10px;
+}
+.signupWithGoogle > * {
+  max-height: 60%;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+.orContainer {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin: 10px 0;
+}
+.orContainer > div {
+  flex: 1;
+  height: 0;
+  border: 1px solid rgb(207, 207, 207);
+  background-color: red;
+}
+.orContainer > p {
+  flex-shrink: 0;
+  margin: 0 20px;
+}
+
+.questionLine {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.questionLine > input {
+  margin: 10px;
+  height: 40px;
+  padding: 5px 10px;
+  width: clamp(200px, 45%, 400px);
+
+  outline: none;
+  border-radius: 5px;
+  border: 1px solid gainsboro;
+  font-size: 1rem;
+}
+
+.questionLine > input:focus {
+  border: 2px solid orange;
+}
+
+.bodyContent form button {
+  padding: 10px 30px;
+  background-color: rgb(216, 89, 9);
+  color: white;
+  border: none;
+  font-size: 1rem;
+  border-radius: 5px;
+  font-weight: 600;
+  display: block;
+  margin: 20px auto;
+  transition: all 300ms;
+}
+
+.bodyContent form button:hover {
+  box-shadow: 2px 2px 4px 2px rgb(198, 198, 198);
+  transform: scale(1.05);
+}
+.imageSection {
+  width: 70%;
+  background: url("../../assets/images/account-bg.jpg");
+  background-size: cover;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-align: center;
+  gap: 20px;
+}
+
+.imageSection > h3 {
+  font-size: 2.1rem;
+  font-weight: 700;
+}
+.imageSection > p {
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+
+.imageSection > button {
+  padding: 10px 30px;
+  font-size: 1.2rem;
+  border: none;
+  font-weight: 600;
+  background-color: rgb(255, 255, 255);
+  color: rgb(216, 89, 9);
+  border-radius: 10px;
+  box-shadow: 2px 2px 4px 4px rgb(187, 84, 40);
+}
+
+.imageSection > button:hover {
+  animation: wave 500ms ease-in-out 0s 1 normal forwards;
+}
+
+@keyframes wave {
+  0% {
+    transform: rotate(0);
+  }
+  25% {
+    transform: rotate(3deg);
+  }
+
+  75% {
+    transform: rotate(-3deg);
+  }
+
+  100% {
+    transform: rotate(0);
+  }
+}
