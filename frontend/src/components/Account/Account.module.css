@@ -1,6 +1,6 @@
 .body {
   display: flex;
-  min-height: 100vh;
+  min-height: calc(100vh - 61px);
   height: 100%;
   padding: 30px;
 }
@@ -8,6 +8,7 @@
 .bodyContent {
   padding: 30px;
   width: 35%;
+  min-width: 450px;
   align-self: center;
   align-self: center;
   display: flex;
@@ -23,6 +24,7 @@
 
 .bodyContent > h2 {
   margin-bottom: 20px;
+  font-size: 1.6rem;
 }
 .signupWithGoogle {
   display: flex;
@@ -35,6 +37,7 @@
   border-radius: 5px;
   padding: 0 20px;
   margin: 10px;
+  cursor: pointer;
 }
 .signupWithGoogle > * {
   max-height: 60%;
@@ -58,12 +61,17 @@
   margin: 0 20px;
 }
 
+.sectionTitle {
+  text-align: center;
+}
+
 .questionLine {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
 }
 .questionLine > input {
+  flex: 1;
   margin: 10px;
   height: 40px;
   padding: 5px 10px;

@@ -40,51 +40,30 @@ function Account({ login }) {
   };
   return (
     <main className={style.body}>
-      {login ? (
-        <>
-          <div className={style.bodyContent}>
-            <h2>Create your account</h2>
-
-            <div className={style.signupWithGoogle}>
-              <img src={googleIcon} />
-              <h3>Continue with Google</h3>
-            </div>
-
-            <div className={style.orContainer}>
-              <div></div>
-              <p>or</p>
-              <div></div>
-            </div>
-            <form onSubmit={handleSubmit}>
+      <div className={style.bodyContent}>
+        <h2>{login ? "Login to your account" : "Create Account"}</h2>
+        <h2></h2>
+        <div className={style.signupWithGoogle}>
+          <img src={googleIcon} />
+          <h3>Continue with Google</h3>
+        </div>
+        <div className={style.orContainer}>
+          <div></div>
+          <p>or</p>
+          <div></div>
+        </div>
+        <form onSubmit={handleSubmit}>
+          <h2 className={style.sectionTitle}>Use Email</h2>
+          {login ? (
+            <>
               <div className={style.questionLine}>
                 <input placeholder="Email" ref={emailLogin} />
                 <input placeholder="Password" type="password" ref={passwordLogin} />
               </div>
               <button>Login</button>
-            </form>
-          </div>
-          <div className={style.imageSection}>
-            <h3>Welcome!</h3>
-            <p>Enter your details and start journey with us</p>
-            <button onClick={() => navigate("/account/signup")}>Signup</button>
-          </div>
-        </>
-      ) : (
-        <>
-          <div className={style.bodyContent}>
-            <h2>Create your account</h2>
-
-            <div className={style.signupWithGoogle}>
-              <img src={googleIcon} />
-              <h3>Continue with Google</h3>
-            </div>
-
-            <div className={style.orContainer}>
-              <div></div>
-              <p>or</p>
-              <div></div>
-            </div>
-            <form onSubmit={handleSubmit}>
+            </>
+          ) : (
+            <>
               <div className={style.questionLine}>
                 <input type="text" placeholder="First Name" ref={firstNameSignup} />
                 <input type="text" placeholder="Last Name" ref={lastNameSignup} />
@@ -92,21 +71,32 @@ function Account({ login }) {
               <div className={style.questionLine}>
                 <input placeholder="Email" ref={emailSignup} />
               </div>
+
               <div className={style.questionLine}>
                 <input placeholder="Password" type="password" ref={passwordSignup} />
                 <input placeholder="Confirm Password" type="password" ref={confirmedPassword} />
               </div>
               <div></div>
               <button>Sign Up</button>
-            </form>
-          </div>
-          <div className={style.imageSection}>
+            </>
+          )}
+        </form>
+      </div>
+      <div className={style.imageSection}>
+        {login ? (
+          <>
+            <h3>Welcome!</h3>
+            <p>Enter your details and start journey with us</p>
+            <button onClick={() => navigate("/account/signup")}>Signup</button>
+          </>
+        ) : (
+          <>
             <h3>Welcome Back!</h3>
             <p>Already have an account </p>
             <button onClick={() => navigate("/account/login")}>Login</button>
-          </div>
-        </>
-      )}
+          </>
+        )}
+      </div>
     </main>
   );
 }
