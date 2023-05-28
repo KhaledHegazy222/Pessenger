@@ -19,9 +19,9 @@ WORKDIR /app
 COPY package* ./
 COPY ./ ./
 
-RUN npm install
+# RUN npm install
 
-RUN npm run build
+# RUN npm run build
 
 
 FROM nginx:1.18-alpine as production
