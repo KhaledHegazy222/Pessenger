@@ -1,5 +1,16 @@
+import "@fontsource/inter";
+import "./App.css";
+
+import Hero from "./components/Landing Page/Hero/Hero";
+
+import Navbar from "./components/Navbar";
 function App() {
-  return <h1>Hello World</h1>;
+  return (
+    <div>
+      <Navbar />
+      <Hero />
+    </div>
+  );
 }
 
 export default App;

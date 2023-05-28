@@ -1,0 +1,51 @@
+.body {
+  display: flex;
+  align-items: flex-start;
+  padding: 10px 50px;
+}
+
+.body > * {
+  flex-shrink: 0;
+}
+
+.sectionContent {
+  width: 45%;
+}
+.sectionContent > h1 {
+  font-size: 5.2rem;
+  font-weight: 700;
+  margin-top: 20%;
+}
+
+.sectionContent > p {
+  font-size: 1.4rem;
+  color: gray;
+  margin: 50px auto;
+}
+
+.sectionContent > button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 15px 30px;
+  border-radius: 50px;
+  border: none;
+  background-color: rgb(175, 85, 36);
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 500;
+  transition: all 500ms;
+}
+
+.sectionContent > button:hover {
+  transform: scale(1.05);
+  box-shadow: 2px 2px 4px 2px rgb(203, 202, 202);
+}
+.imageContainer {
+  flex: 1;
+}
+
+.imageContainer img {
+  width: 100%;
+}

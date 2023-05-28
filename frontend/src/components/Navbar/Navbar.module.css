@@ -1,0 +1,43 @@
+.body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 30px;
+  background-color: white;
+  position: sticky;
+  top: 0;
+  left: 0;
+}
+
+.navList {
+  list-style: none;
+  display: flex;
+  gap: 40px;
+}
+.navList li {
+  font-size: 1.2rem;
+  color: gray;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.navList li:hover {
+  color: black;
+}
+
+.body > button {
+  padding: 10px 30px;
+  background-color: transparent;
+  border: 1px solid rgb(175, 85, 36);
+  border-radius: 60px;
+  color: rgb(175, 85, 36);
+  font-weight: 500;
+  font-size: 1rem;
+  transition: all 400ms;
+  cursor: pointer;
+}
+
+.body > button:hover {
+  background-color: rgb(175, 85, 36);
+  color: white;
+}
