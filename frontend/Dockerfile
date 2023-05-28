@@ -28,16 +28,14 @@ FROM nginx:1.18-alpine as production
 
 # install certificates needed packages
 RUN apk update && apk add --no-cache \
-    software-properties-common \
     certbot \
     certbot-nginx
 
+RUN certbot --nginx certonly -d pessenger.duckdns.org
+
 COPY nginx.conf /etc/nginx/nginx.conf
 
-
 COPY --from=build /app/build /usr/share/nginx/html
-
-EXPOSE 80
 
 CMD ["nginx", "-g", "daemon off;"]
 
