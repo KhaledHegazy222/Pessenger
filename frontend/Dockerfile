@@ -26,7 +26,14 @@ RUN npm run build
 
 FROM nginx:1.18-alpine as production
 
+# install certificates needed packages
+RUN apk update && apk add --no-cache \
+    software-properties-common \
+    certbot \
+    certbot-nginx
+
 COPY nginx.conf /etc/nginx/nginx.conf
+
 
 COPY --from=build /app/build /usr/share/nginx/html
 
