@@ -1,0 +1,4 @@
+.pageLayout {
+  display: grid;
+  grid-template: 100vh / 1fr 3fr;
+}

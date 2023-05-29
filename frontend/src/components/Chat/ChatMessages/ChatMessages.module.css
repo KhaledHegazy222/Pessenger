@@ -1,0 +1,16 @@
+.body {
+}
+
+.body header {
+  height: 100px;
+  border: 1px solid gainsboro;
+  display: flex;
+  align-items: center;
+  padding: 20px;
+}
+
+.body header h2 {
+  color: rgb(175, 85, 36);
+  font-weight: 700;
+  font-size: 1.8rem;
+}

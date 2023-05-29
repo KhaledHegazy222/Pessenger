@@ -1,7 +1,8 @@
 import React from "react";
 import Navbar from "../components/Navbar";
-import Hero from "../components/Landing-Page/Hero";
+import Hero from "../components/Home/Hero";
 import Account from "../components/Account";
+import Chats from "./Chats";
 
 const pagesData = [
   {
@@ -33,6 +34,11 @@ const pagesData = [
         <Account login={false} />
       </>
     )
+  },
+  {
+    name: "Chats",
+    path: "/chats/:chatID?",
+    element: <Chats />
   }
 ];
 

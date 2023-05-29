@@ -3,12 +3,14 @@ import PropTypes from "prop-types";
 import style from "./Account.module.css";
 import googleIcon from "../../assets/images/google.png";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../contexts/AuthContext";
 
 import axios from "axios";
 
 function Account({ login }) {
   const navigate = useNavigate();
-  console.log(login);
+  const { setAuth } = useAuth();
+
   const firstNameSignup = useRef();
   const lastNameSignup = useRef();
   const emailSignup = useRef();
@@ -19,21 +21,38 @@ function Account({ login }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (
-      passwordSignup.current.value &&
-      passwordSignup.current.value !== confirmedPassword.current.value
-    ) {
-      return;
-    }
-    const userData = {
-      first_name: firstNameSignup.current.value,
-      last_name: lastNameSignup.current.value,
-      email: emailSignup.current.value,
-      password: passwordSignup.current.value
-    };
     try {
-      const response = await axios.post("http://localhost:3001/api/account/signup/", userData);
-      console.log(response.data);
+      if (login) {
+        const reqBody = {
+          email: emailLogin.current.value,
+          password: passwordLogin.current.value
+        };
+
+        const response = await axios.post("http://localhost:3001/api/account/login/", reqBody);
+        const token = response.data.token;
+        setAuth(token);
+        localStorage.setItem("token", token);
+        navigate("/chats");
+      } else {
+        if (
+          passwordSignup.current.value &&
+          passwordSignup.current.value !== confirmedPassword.current.value
+        ) {
+          return;
+        }
+        const reqBody = {
+          first_name: firstNameSignup.current.value,
+          last_name: lastNameSignup.current.value,
+          email: emailSignup.current.value,
+          password: passwordSignup.current.value
+        };
+
+        const response = await axios.post("http://localhost:3001/api/account/signup/", reqBody);
+        const token = response.data.token;
+        setAuth(token);
+        localStorage.setItem("token", token);
+        navigate("/chats");
+      }
     } catch (error) {
       console.log(error.toString());
     }
