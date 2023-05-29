@@ -1,0 +1,40 @@
+.body {
+  border: 1px solid rgb(191, 191, 191);
+}
+.body header {
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  border: 1px solid gainsboro;
+}
+.body header h2 {
+  color: rgb(175, 85, 36);
+  font-weight: 700;
+  font-size: 1.8rem;
+}
+.body ul {
+  list-style-type: none;
+}
+.body ul li {
+  padding: 0 20px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 20px;
+  background-color: rgb(255, 255, 255);
+  cursor: pointer;
+  transition: all 200ms;
+}
+.body ul li > img {
+  height: 70%;
+  max-height: 40px;
+  border: 1px solid gray;
+  border-radius: 50%;
+}
+
+.body ul li:hover {
+  background-color: rgb(221, 221, 221);
+}
