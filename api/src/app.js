@@ -4,9 +4,19 @@ require("./config/database").connect();
 const express = require("express");
 const app = express();
 
-const cors = require("cors");
-app.use(cors());
+const http = require("http");
+const server = http.createServer(app);
 
+const cors = require("cors");
+
+const corsOptions = {
+  origin: "http://localhost:3000", // Replace with the appropriate origin URL of your client-side app
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  preflightContinue: false,
+  optionsSuccessStatus: 204,
+};
+
+app.use(cors(corsOptions));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
@@ -16,4 +26,18 @@ const chatRouter = require("./routes/chat");
 app.use("/api/account", userRouter);
 app.use("/api/chats", chatRouter);
 
-module.exports = app;
+const socketIo = require("socket.io");
+const io = socketIo(server);
+
+// Socket.io configuration
+const socketHandler = require("./sockets");
+const { verifySocket } = require("./middlewares");
+io.use(verifySocket);
+io.on("connection", socketHandler);
+
+const port = 3001;
+
+// server listening
+server.listen(port, () => {
+  console.log(`Server running on port ${port}`);
+});

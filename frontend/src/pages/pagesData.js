@@ -38,7 +38,12 @@ const pagesData = [
   {
     name: "Chats",
     path: "/chats/:chatID?",
-    element: <Chats />
+    element: (
+      <>
+        <Navbar />
+        <Chats />
+      </>
+    )
   }
 ];
 

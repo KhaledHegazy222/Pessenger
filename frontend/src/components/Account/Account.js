@@ -1,11 +1,12 @@
-import React, { useRef } from "react";
+/* eslint-disable */
+import React, { useRef, useState } from "react";
 import PropTypes from "prop-types";
 import style from "./Account.module.css";
-import googleIcon from "../../assets/images/google.png";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 
 import axios from "axios";
+import Google from "./Google";
 
 function Account({ login }) {
   const navigate = useNavigate();
@@ -53,19 +54,13 @@ function Account({ login }) {
         localStorage.setItem("token", token);
         navigate("/chats");
       }
-    } catch (error) {
-      console.log(error.toString());
-    }
+    } catch {}
   };
   return (
     <main className={style.body}>
       <div className={style.bodyContent}>
         <h2>{login ? "Login to your account" : "Create Account"}</h2>
-        <h2></h2>
-        <div className={style.signupWithGoogle}>
-          <img src={googleIcon} />
-          <h3>Continue with Google</h3>
-        </div>
+        <Google />
         <div className={style.orContainer}>
           <div></div>
           <p>or</p>

@@ -16,3 +16,20 @@ exports.verifyUser = (req, res, next) => {
   }
   next();
 };
+
+exports.verifySocket = (socket, next) => {
+  const token = socket.handshake.query.token;
+
+  if (!token) {
+    return next(new Error("Unauthorized"));
+  }
+
+  try {
+    const decoded = jwt.verify(token, ACCESS_TOKEN_SECRET);
+
+    socket.user = decoded; // Attach the user information to the socket object
+    next();
+  } catch (error) {
+    return next(new Error("Unauthorized"));
+  }
+};

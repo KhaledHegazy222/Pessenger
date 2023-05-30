@@ -1,7 +1,10 @@
 .body {
+  display: flex;
+  flex-direction: column;
 }
 
 .body header {
+  flex-shrink: 0;
   height: 100px;
   border: 1px solid gainsboro;
   display: flex;
@@ -13,4 +16,78 @@
   color: rgb(175, 85, 36);
   font-weight: 700;
   font-size: 1.8rem;
+}
+
+.body ul {
+  flex: 1;
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+}
+.body ul li {
+  margin: 10px;
+  max-width: 40%;
+}
+
+.body ul li.userMessage {
+  align-self: flex-end;
+}
+
+.body ul li.userMessage p {
+  padding: 10px;
+  border-radius: 10px;
+  background-color: rgb(175, 85, 36);;
+  color: white;
+  border-bottom-right-radius: 0;
+}
+.body ul li.othersMessage {
+  align-self: flex-start;
+}
+.body ul li.othersMessage img {
+  height: 50px;
+  border: 1px solid gray;
+  border-radius: 50%;
+}
+.body ul li.othersMessage p {
+  padding: 10px;
+  border-radius: 10px;
+  background-color: rgb(216, 216, 216);
+  border-top-left-radius: 0;
+}
+
+.sendBar {
+  flex-shrink: 0;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  border-top: 1px solid gainsboro;
+}
+
+.sendBar input {
+  outline: none;
+  padding: 10px;
+  font-size: 1rem;
+  flex: 1;
+  height: 35px;
+  border-radius: 40px;
+  border: none;
+  background-color: rgb(239, 239, 239);
+  margin: 20px;
+}
+
+.sendBar button {
+  font-size: 1.3rem;
+  color: rgb(175, 85, 36);
+  padding: 10px;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  background-color: transparent;
+  border: none;
+  transition: all 200ms;
+}
+
+.sendBar button:hover {
+  background-color: gainsboro;
 }
