@@ -1,10 +1,8 @@
 const Chat = require("../models/chat");
 const Message = require("../models/message");
-
 exports.sendMessage = async (req, res) => {
   try {
     const { chatID } = req.params;
-    console.log(chatID);
     const { content } = req.body;
     const message = await Message.create({
       from: req.user._id,

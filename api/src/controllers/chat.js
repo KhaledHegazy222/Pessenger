@@ -1,14 +1,20 @@
 const User = require("../models/user");
 const Chat = require("../models/chat");
 
-exports.getAllChats = async (req, res) => {
-  const user = await User.findOne({ _id: req.user._id }).populate({
+exports.getChat = async (chatID) => {
+  return Chat.findOne({ _id: chatID }).populate("members messages");
+};
+exports.getUser = async (userID) => {
+  const user = await User.findOne({ _id: userID }).populate({
     path: "chats",
     populate: {
       path: "messages",
     },
   });
-
+  return user;
+};
+exports.getAllChats = async (req, res) => {
+  const user = await this.getUser(req.user._id);
   return res.status(200).json({ chats: user.chats });
 };
 
