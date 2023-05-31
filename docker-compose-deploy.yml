@@ -10,6 +10,7 @@ services:
       - /app/node_modules
     ports:
       - 80:80
+      - 433:433
 
   api:
     build:
