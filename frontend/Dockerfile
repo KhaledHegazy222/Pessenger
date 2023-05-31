@@ -28,15 +28,15 @@ FROM nginx:1.18-alpine as production
 
 # install certificates needed packages
 RUN apk add --no-cache \
-    certbot \
-    certbot-nginx
+  certbot \
+  certbot-nginx
 
-RUN certbot --nginx certonly --non-interactive --agree-tos --email khaledhegazy870@gmail.com -d pessenger.duckdns.org 
+# RUN certbot --nginx certonly --non-interactive --agree-tos --email khaledhegazy870@gmail.com -d pessenger.duckdns.org 
 
 COPY nginx.conf /etc/nginx/nginx.conf
 
 COPY --from=build /app/build /usr/share/nginx/html
 
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["certbot --nginx certonly --non-interactive --agree-tos --email khaledhegazy870@gmail.com -d pessenger.duckdns.org && nginx -g daemon off;"]
 
 
