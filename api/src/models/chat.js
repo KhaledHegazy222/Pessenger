@@ -7,6 +7,7 @@ const chatSchema = new mongoose.Schema({
     type: [{ type: mongoose.Types.ObjectId, ref: "Message" }],
     default: [],
   },
+  last_updated: { type: Date, default: () => Date.now() },
 });
 
 module.exports = mongoose.model("Chat", chatSchema);

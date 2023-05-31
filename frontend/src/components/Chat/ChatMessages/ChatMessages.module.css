@@ -1,6 +1,8 @@
 .body {
   display: flex;
   flex-direction: column;
+  grid-area: 1 / 2/ 2 / 3;
+  overflow: hidden;
 }
 
 .body header {
@@ -24,22 +26,30 @@
   display: flex;
   flex-direction: column;
   overflow: auto;
+  padding: 20px;
 }
 .body ul li {
   margin: 10px;
   max-width: 40%;
+  position: relative;
 }
 
 .body ul li.userMessage {
   align-self: flex-end;
 }
-
-.body ul li.userMessage p {
+.body .messageBody h2 {
+  color: rgb(175, 85, 36);
+  font-size: 0.8rem;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+.body ul li.userMessage .messageBody {
   padding: 10px;
   border-radius: 10px;
-  background-color: rgb(175, 85, 36);;
+  background-color: rgb(175, 85, 36);
   color: white;
   border-bottom-right-radius: 0;
+  word-wrap: break-word;
 }
 .body ul li.othersMessage {
   align-self: flex-start;
@@ -49,11 +59,32 @@
   border: 1px solid gray;
   border-radius: 50%;
 }
-.body ul li.othersMessage p {
+.body ul li.othersMessage .messageBody {
   padding: 10px;
   border-radius: 10px;
   background-color: rgb(216, 216, 216);
   border-top-left-radius: 0;
+  word-wrap: break-word;
+}
+.body ul li.userMessage:not(:last-child) .messagePending,
+.body ul li.userMessage:not(:last-child) .messageSent {
+  display: none;
+}
+.body ul li.userMessage:last-child .messagePending,
+.body ul li.userMessage:last-child .messageSent {
+  display: block;
+  width: 13px;
+  height: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgb(175, 85, 36);
+  border: 1px solid rgb(175, 85, 36);
+
+  border-radius: 50%;
+  position: absolute;
+  right: -10px;
+  margin: 5px 0;
 }
 
 .sendBar {
@@ -90,4 +121,12 @@
 
 .sendBar button:hover {
   background-color: gainsboro;
+}
+
+.noChatContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

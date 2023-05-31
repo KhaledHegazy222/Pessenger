@@ -38,3 +38,10 @@
 .body ul li:hover {
   background-color: rgb(221, 221, 221);
 }
+
+.popupBody {
+  background-color: white;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 2px 2px 4px 4px rgb(158, 158, 158);
+}
