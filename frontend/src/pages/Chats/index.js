@@ -54,7 +54,7 @@ function Chats() {
   ) : (
     <div className={style.pageLayout}>
       <ChatsList chats={chats} />
-      <ChatMessages chats={chats} announceMessage={sendMessageRef.current} />
+      <ChatMessages chats={chats} setChats={setChats} announceMessage={sendMessageRef.current} />
     </div>
   );
 }
