@@ -1,0 +1,10 @@
+.popupContainer {
+  background-color: rgba(15, 15, 15, 0.678);
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}

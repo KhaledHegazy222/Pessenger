@@ -1,3 +1,4 @@
+const User = require("../models/user");
 const {
   login,
   signup,
@@ -13,9 +14,8 @@ router.post("/google-login", continueWithGoogle);
 router.post("/signup", signup);
 router.post("/logout", verifyUser, logout);
 
-const User = require("../models/user");
 router.get("/", async (req, res) => {
-  const usersList = await User.find({}, "_id email");
+  const usersList = await User.find({}, "_id email first_name last_name");
   return res.json(usersList);
 });
 

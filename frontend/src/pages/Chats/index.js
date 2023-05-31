@@ -8,6 +8,7 @@ import ChatMessages from "../../components/Chat/ChatMessages/ChatMessages";
 
 const ENDPOINT = "http://localhost:3001";
 import { io } from "socket.io-client";
+import withAuth from "../../HOC/withAuth";
 
 function Chats() {
   const { auth, setAuth } = useAuth();
@@ -23,6 +24,7 @@ function Chats() {
         const response = await serverAxios.get("/api/chats", {
           headers: { Authorization: `Bearer ${auth}` }
         });
+
         setChats(response.data.chats);
         setIsLoading(false);
       } catch {}
@@ -34,12 +36,8 @@ function Chats() {
       transports: ["websocket"],
       query: { token: auth }
     });
-
-    socket.on("connect", () => {
-      console.log("Connected to server");
-    });
-    sendMessageRef.current = (chatID) => {
-      socket.emit("chats", chatID);
+    sendMessageRef.current = (chatID, refresh = false) => {
+      socket.emit("chats", { chatID, refresh });
     };
     socket.on("chats", (data) => {
       setChats(data.chats);
@@ -53,10 +51,10 @@ function Chats() {
     "Loading..."
   ) : (
     <div className={style.pageLayout}>
-      <ChatsList chats={chats} />
+      <ChatsList chats={chats} announceMessage={sendMessageRef.current} />
       <ChatMessages chats={chats} setChats={setChats} announceMessage={sendMessageRef.current} />
     </div>
   );
 }
 
-export default Chats;
+export default withAuth(Chats);

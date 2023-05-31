@@ -19,10 +19,11 @@ exports.getAllChats = async (req, res) => {
 };
 
 exports.createChat = async (req, res) => {
+  let chat;
   try {
     const { name, members } = req.body;
     members.push(req.user._id);
-    const chat = await Chat.create({ name, members });
+    chat = await Chat.create({ name, members });
     members.forEach(async (member) => {
       const user = await User.findOne({ _id: member });
       user.chats.push(chat._id);
@@ -31,7 +32,7 @@ exports.createChat = async (req, res) => {
   } catch (error) {
     return res.status(400).json({ error: error.toString() });
   }
-  return res.sendStatus(200);
+  return res.status(200).json({ chat: { _id: chat._id } });
 };
 
 exports.joinChat = async (req, res) => {

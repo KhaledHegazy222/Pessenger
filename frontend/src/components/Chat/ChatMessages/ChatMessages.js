@@ -6,7 +6,7 @@ import { serverAxios } from "../../../utils/";
 import { useAuth } from "../../../contexts/AuthContext";
 import profileImage from "../../../assets/images/profile.png";
 import messageImage from "../../../assets/gifs/message.gif";
-import { SendFill } from "react-bootstrap-icons";
+import { Check, SendFill } from "react-bootstrap-icons";
 import { v4 as uuidv4 } from "uuid";
 
 function ChatMessages({ chats, setChats, announceMessage }) {
@@ -16,6 +16,8 @@ function ChatMessages({ chats, setChats, announceMessage }) {
   const [user, setUser] = useState({});
   const messageListRef = useRef();
   const messageInputRef = useRef();
+  console.log(chats);
+  console.log("---------------------");
   useEffect(() => {
     if (chatID) {
       setSelectedChat(chats.find((chat) => chat._id === chatID));
@@ -43,13 +45,16 @@ function ChatMessages({ chats, setChats, announceMessage }) {
       return;
     }
     try {
+      const content = messageInputRef.current.value;
       setChats((prev) => {
         const copy = structuredClone(prev);
-        const chatIndex = copy.findIndex((chat) => chat._id === chatID);
+        let chatIndex = copy.findIndex((chat) => chat._id === chatID);
+        copy[chatIndex].last_updated = Date.now();
 
+        chatIndex = copy.findIndex((chat) => chat._id === chatID);
         copy[chatIndex].messages.push({
           _id: uuidv4(),
-          content: messageInputRef.current.value,
+          content,
           from: user._id,
           pending: true
         });
@@ -62,7 +67,21 @@ function ChatMessages({ chats, setChats, announceMessage }) {
       await serverAxios.post(`api/chats/${chatID}/messages/new`, reqBody, {
         headers: { Authorization: `Bearer ${auth}` }
       });
+      setChats((prev) => {
+        const copy = structuredClone(prev);
 
+        let chatIndex = copy.findIndex((chat) => chat._id === chatID);
+        copy[chatIndex].last_updated = Date.now();
+
+        chatIndex = copy.findIndex((chat) => chat._id === chatID);
+        copy[chatIndex].messages[copy[chatIndex].messages.length - 1] = {
+          _id: uuidv4(),
+          content,
+          from: user._id,
+          pending: false
+        };
+        return copy;
+      });
       announceMessage(chatID);
     } catch {}
   };
@@ -80,10 +99,12 @@ function ChatMessages({ chats, setChats, announceMessage }) {
                 <li
                   key={message._id}
                   className={message.from === user._id ? style.userMessage : style.othersMessage}>
-                  <div>
-                    {/* {message.from !== user._id && <img src={profileImage} />} */}
-                    <p>{message.content}</p>
-                    <div>{message.pending ? "Pending" : "Sent"}</div>
+                  <div className={style.messageBody}>
+                    {user._id !== message.from && <h2>{`${user.first_name} ${user.last_name}`}</h2>}
+                    {message.content}
+                  </div>
+                  <div className={message.pending ? style.messagePending : style.messageSent}>
+                    {!message.pending && message.from === user._id && <Check />}
                   </div>
                 </li>
               );

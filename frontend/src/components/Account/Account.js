@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
 import style from "./Account.module.css";
 import { useNavigate } from "react-router-dom";
@@ -10,7 +10,8 @@ import Google from "./Google";
 
 function Account({ login }) {
   const navigate = useNavigate();
-  const { setAuth } = useAuth();
+
+  const { auth, setAuth } = useAuth();
 
   const firstNameSignup = useRef();
   const lastNameSignup = useRef();
@@ -19,7 +20,11 @@ function Account({ login }) {
   const confirmedPassword = useRef();
   const emailLogin = useRef();
   const passwordLogin = useRef();
-
+  useEffect(() => {
+    if (auth) {
+      navigate("/chats");
+    }
+  }, [auth]);
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -52,7 +57,6 @@ function Account({ login }) {
         const token = response.data.token;
         setAuth(token);
         localStorage.setItem("token", token);
-        navigate("/chats");
       }
     } catch {}
   };
