@@ -8,9 +8,19 @@ services:
     volumes:
       - ./frontend:/app
       - /app/node_modules
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
     ports:
       - 80:80
       - 433:433
+
+  certbot:
+    image: certbot/certbot
+    container_name: certbot
+    volumes:
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
+    command: certonly --webroot -w /var/www/certbot --force-renewal --email khaledhegazy870@gmail.com -d pessenger.duckdns.org --agree-tos
 
   api:
     build:
