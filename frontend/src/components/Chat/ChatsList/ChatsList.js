@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import Select from "react-select";
 import { useAuth } from "../../../contexts/AuthContext";
 import { serverAxios } from "../../../utils";
+import { PlusCircle } from "react-bootstrap-icons";
 
 function ChatsList({ chats, announceMessage }) {
   const navigate = useNavigate();
@@ -55,7 +56,8 @@ function ChatsList({ chats, announceMessage }) {
   const customStyles = {
     control: (provided) => ({
       ...provided,
-      width: "300px"
+      width: "300px",
+      margin: "20px 0"
     })
   };
   return (
@@ -65,11 +67,11 @@ function ChatsList({ chats, announceMessage }) {
           <h2>Create Chat</h2>
           <form onSubmit={handleAddChat}>
             <div>
-              <label>Chat Name</label>
               <input
                 type="text"
                 required={true}
                 value={chatName}
+                placeholder="Chat Name"
                 onChange={(e) => {
                   setChatName(e.target.value);
                 }}
@@ -84,9 +86,10 @@ function ChatsList({ chats, announceMessage }) {
                 onChange={handleSelectChange}
                 styles={customStyles}
                 placeholder="Members"
+                required={true}
               />
             </div>
-            <div>
+            <div className={style.buttonsContainer}>
               <button type="submit">Create</button>
               <button
                 type="button"
@@ -103,7 +106,10 @@ function ChatsList({ chats, announceMessage }) {
         <header>
           <h2>Messages</h2>
           <div>
-            <button onClick={() => setShowDialog(true)}>Add Chat</button>
+            <button onClick={() => setShowDialog(true)}>
+              <PlusCircle />
+              <p>Create Chat</p>
+            </button>
           </div>
         </header>
         <ul>
