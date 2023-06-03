@@ -23,3 +23,17 @@ services:
       - /app/node_modules
     ports:
       - 3001:3001
+
+  https-portal:
+    image: steveltn/https-portal:1
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      DOMAINS: "api-pessenger.duckdns.org -> http://api:3001, pessenger.duckdns.org -> http://frontend"
+      # STAGE: 'production' # Don't use production until staging works
+    volumes:
+      - https-portal-data:/var/lib/https-portal
+
+volumes:
+  https-portal-data: # Recommended, to avoid re-signing when upgrading HTTPS-PORTAL
