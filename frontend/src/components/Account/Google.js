@@ -13,7 +13,7 @@ function Google() {
         onSuccess={async (responseCredentials) => {
           const token = responseCredentials.credential;
           const response = await serverAxios.post(
-            "/api/account/google-login",
+            "/api/account/google-login/",
             {},
             {
               headers: { Authorization: token }

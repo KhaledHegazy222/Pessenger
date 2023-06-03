@@ -10,13 +10,13 @@ const server = http.createServer(app);
 const cors = require("cors");
 
 const corsOptions = {
-  origin: "http://localhost:3000", // Replace with the appropriate origin URL of your client-side app
+  origin: "*", // Replace with the appropriate origin URL of your client-side app
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   preflightContinue: false,
   optionsSuccessStatus: 204,
 };
 
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 

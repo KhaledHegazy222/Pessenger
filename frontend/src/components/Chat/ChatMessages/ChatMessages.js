@@ -16,8 +16,7 @@ function ChatMessages({ chats, setChats, announceMessage }) {
   const [user, setUser] = useState({});
   const messageListRef = useRef();
   const messageInputRef = useRef();
-  console.log(chats);
-  console.log("---------------------");
+
   useEffect(() => {
     if (chatID) {
       setSelectedChat(chats.find((chat) => chat._id === chatID));
