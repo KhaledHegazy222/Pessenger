@@ -5,6 +5,7 @@ import { useAuth } from "./contexts/AuthContext";
 
 function App() {
   const { isLoading } = useAuth();
+  console.log("Done");
   console.log(process.env.REACT_APP_API_URL);
   return <div>{isLoading ? <></> : routes}</div>;
 }
