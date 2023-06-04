@@ -31,6 +31,7 @@ services:
     environment:
       DOMAINS: "api.pessenger.duckdns.org -> http://api:8000, pessenger.duckdns.org -> http://frontend"
       STAGE: "production" # Don't use production until staging works
+      WEBSOCKET: true
     volumes:
       - https-portal-data:/var/lib/https-portal
     networks:
