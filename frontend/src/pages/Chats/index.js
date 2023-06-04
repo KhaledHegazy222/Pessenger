@@ -44,7 +44,6 @@ function Chats() {
     });
 
     return () => {
-      console.log("Failed");
       socket.disconnect();
     };
   }, [auth]);

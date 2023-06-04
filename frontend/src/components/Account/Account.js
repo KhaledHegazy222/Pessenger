@@ -97,32 +97,53 @@ function Account({ login }) {
           {login ? (
             <>
               <div className={style.questionLine}>
-                <input placeholder="Email" ref={emailLogin} />
-                <input placeholder="Password" type="password" ref={passwordLogin} />
+                <input placeholder="Email" required={true} ref={emailLogin} />
+                <input placeholder="Password" required={true} type="password" ref={passwordLogin} />
               </div>
-              <button>Login</button>
+              <button type="submit">Login</button>
             </>
           ) : (
             <>
               <div className={style.questionLine}>
-                <input id="first_name" type="text" placeholder="First Name" ref={firstNameSignup} />
-                <input id="last_name" type="text" placeholder="Last Name" ref={lastNameSignup} />
+                <input
+                  id="first_name"
+                  type="text"
+                  required={true}
+                  placeholder="First Name"
+                  ref={firstNameSignup}
+                />
+                <input
+                  id="last_name"
+                  type="text"
+                  required={true}
+                  placeholder="Last Name"
+                  ref={lastNameSignup}
+                />
               </div>
               <div className={style.questionLine}>
-                <input id="email" placeholder="Email" ref={emailSignup} />
+                <input id="email" placeholder="Email" required={true} ref={emailSignup} />
               </div>
 
               <div className={style.questionLine}>
-                <input id="password" placeholder="Password" type="password" ref={passwordSignup} />
+                <input
+                  id="password"
+                  placeholder="Password"
+                  type="password"
+                  minLength={8}
+                  required={true}
+                  ref={passwordSignup}
+                />
                 <input
                   id="confirm_password"
                   placeholder="Confirm Password"
                   type="password"
+                  minLength={8}
+                  required={true}
                   ref={confirmedPassword}
                 />
               </div>
               <div></div>
-              <button>Sign Up</button>
+              <button type="submit">Sign Up</button>
             </>
           )}
         </form>
