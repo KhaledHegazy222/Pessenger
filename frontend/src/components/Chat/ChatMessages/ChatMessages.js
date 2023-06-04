@@ -8,6 +8,7 @@ import profileImage from "../../../assets/images/profile.png";
 import messageImage from "../../../assets/gifs/message.gif";
 import { Check, SendFill } from "react-bootstrap-icons";
 import { v4 as uuidv4 } from "uuid";
+import { toast } from "react-toastify";
 
 function ChatMessages({ chats, setChats, announceMessage }) {
   const { chatID } = useParams();
@@ -28,7 +29,9 @@ function ChatMessages({ chats, setChats, announceMessage }) {
           headers: { Authorization: `Bearer ${auth}` }
         });
         setUser(response.data);
-      } catch {}
+      } catch (error) {
+        toast.error(error.response.data.error);
+      }
     }
   }, [chatID, chats]);
 
@@ -82,7 +85,9 @@ function ChatMessages({ chats, setChats, announceMessage }) {
         return copy;
       });
       announceMessage(chatID);
-    } catch {}
+    } catch (error) {
+      toast.error(error.response.data.error);
+    }
   };
 
   return (

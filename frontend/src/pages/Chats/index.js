@@ -7,6 +7,7 @@ import ChatsList from "../../components/Chat/ChatsList/ChatsList";
 import ChatMessages from "../../components/Chat/ChatMessages/ChatMessages";
 import { io } from "socket.io-client";
 import withAuth from "../../HOC/withAuth";
+import { toast } from "react-toastify";
 
 const ENDPOINT = process.env.REACT_APP_API_URL;
 
@@ -27,7 +28,9 @@ function Chats() {
 
         setChats(response.data.chats);
         setIsLoading(false);
-      } catch {}
+      } catch (error) {
+        toast.error(error.response.data.error);
+      }
     }
   }, [auth]);
 
