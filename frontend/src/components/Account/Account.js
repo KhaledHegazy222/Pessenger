@@ -5,7 +5,7 @@ import style from "./Account.module.css";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 
-import axios from "axios";
+import { serverAxios } from "../../utils";
 import Google from "./Google";
 
 function Account({ login }) {
@@ -13,18 +13,40 @@ function Account({ login }) {
 
   const { auth, setAuth } = useAuth();
 
-  const firstNameSignup = useRef();
-  const lastNameSignup = useRef();
-  const emailSignup = useRef();
-  const passwordSignup = useRef();
-  const confirmedPassword = useRef();
-  const emailLogin = useRef();
-  const passwordLogin = useRef();
+  const firstNameSignup = useRef(null);
+  const lastNameSignup = useRef(null);
+  const emailSignup = useRef(null);
+  const passwordSignup = useRef(null);
+  const confirmedPassword = useRef(null);
+  const emailLogin = useRef(null);
+  const passwordLogin = useRef(null);
   useEffect(() => {
     if (auth) {
       navigate("/chats");
     }
-  }, [auth]);
+
+    if (firstNameSignup.current) {
+      firstNameSignup.current.value = "";
+    }
+    if (lastNameSignup.current) {
+      lastNameSignup.current.value = "";
+    }
+    if (emailSignup.current) {
+      emailSignup.current.value = "";
+    }
+    if (passwordSignup.current) {
+      passwordSignup.current.value = "";
+    }
+    if (confirmedPassword.current) {
+      confirmedPassword.current.value = "";
+    }
+    if (emailLogin.current) {
+      emailLogin.current.value = "";
+    }
+    if (passwordLogin.current) {
+      passwordLogin.current.value = "";
+    }
+  }, [auth, login]);
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -34,7 +56,7 @@ function Account({ login }) {
           password: passwordLogin.current.value
         };
 
-        const response = await axios.post("http://localhost:3001/api/account/login/", reqBody);
+        const response = await serverAxios.post("/api/account/login/", reqBody);
         const token = response.data.token;
         setAuth(token);
         localStorage.setItem("token", token);
@@ -53,7 +75,7 @@ function Account({ login }) {
           password: passwordSignup.current.value
         };
 
-        const response = await axios.post("http://localhost:3001/api/account/signup/", reqBody);
+        const response = await serverAxios.post("/api/account/signup/", reqBody);
         const token = response.data.token;
         setAuth(token);
         localStorage.setItem("token", token);
@@ -83,16 +105,21 @@ function Account({ login }) {
           ) : (
             <>
               <div className={style.questionLine}>
-                <input type="text" placeholder="First Name" ref={firstNameSignup} />
-                <input type="text" placeholder="Last Name" ref={lastNameSignup} />
+                <input id="first_name" type="text" placeholder="First Name" ref={firstNameSignup} />
+                <input id="last_name" type="text" placeholder="Last Name" ref={lastNameSignup} />
               </div>
               <div className={style.questionLine}>
-                <input placeholder="Email" ref={emailSignup} />
+                <input id="email" placeholder="Email" ref={emailSignup} />
               </div>
 
               <div className={style.questionLine}>
-                <input placeholder="Password" type="password" ref={passwordSignup} />
-                <input placeholder="Confirm Password" type="password" ref={confirmedPassword} />
+                <input id="password" placeholder="Password" type="password" ref={passwordSignup} />
+                <input
+                  id="confirm_password"
+                  placeholder="Confirm Password"
+                  type="password"
+                  ref={confirmedPassword}
+                />
               </div>
               <div></div>
               <button>Sign Up</button>

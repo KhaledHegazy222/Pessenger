@@ -158,3 +158,26 @@
     transform: rotate(0);
   }
 }
+
+@media screen and (max-width: 1200px) {
+  .body {
+    min-height: 100vh;
+  }
+  .bodyContent {
+    position: absolute;
+    align-self: flex-start;
+    left: 50%;
+    border: 1px solid red;
+    transform: translateX(-50%);
+    margin-top: 220px;
+    min-width: unset;
+    max-width: unset;
+    width: clamp(300px, 70%, 500px);
+    padding: 30px 20px;
+  }
+  .imageSection {
+    flex: 1;
+    justify-content: flex-start;
+    padding: 20px;
+  }
+}

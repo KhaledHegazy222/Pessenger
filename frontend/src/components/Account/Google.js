@@ -24,7 +24,6 @@ function Google() {
           navigate("/chats");
         }}
         onError={() => {
-          console.log("Login Failed");
         }}
       />
     </GoogleOAuthProvider>
