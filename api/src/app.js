@@ -31,8 +31,8 @@ const io = socketIo(server);
 
 // Socket.io configuration
 const socketHandler = require("./sockets");
-const { verifySocket } = require("./middlewares");
-io.use(verifySocket);
+// const { verifySocket } = require("./middlewares");
+// io.use(verifySocket);
 io.on("connection", socketHandler);
 
 const port = 8000;

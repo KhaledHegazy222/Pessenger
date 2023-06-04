@@ -2,7 +2,7 @@ const connectedUsers = new Map();
 const { getChat, getUser } = require("../controllers/chat");
 const socketHandler = (socket) => {
   console.log("New Client");
-  connectedUsers.set(socket.user._id, socket);
+  // connectedUsers.set(socket.user._id, socket);
 
   socket.on("chats", async (data) => {
     const { chatID, refresh } = data;
@@ -20,7 +20,7 @@ const socketHandler = (socket) => {
   });
   socket.on("disconnect", () => {
     console.log("Client disconnected");
-    connectedUsers.clear(socket.user._id);
+    // connectedUsers.clear(socket.user._id);
   });
 };
 
