@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "DEBUG=express:* node src/app.js",
+    "start": "node src/app.js",
     "dev": "nodemon src/app.js",
     "lint": "eslint .",
     "lint:fix": "eslint --fix",
