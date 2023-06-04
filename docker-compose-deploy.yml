@@ -29,7 +29,7 @@ services:
       - "80:80"
       - "443:443"
     environment:
-      DOMAINS: "api.pessenger.duckdns.org -> http://api:8000, pessenger.duckdns.org -> http://frontend"
+      DOMAINS: "api.pessenger.duckdns.org -> http://api:8000, pessenger.duckdns.org -> http://frontend:80"
       STAGE: "production" # Don't use production until staging works
       WEBSOCKET: true
     volumes:
