@@ -47,7 +47,7 @@ function Chats() {
     });
 
     socket.on("connect_error", (err) => {
-      console.log(err.message);
+      console.log(err);
     });
     return () => {
       socket.disconnect();
