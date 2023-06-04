@@ -33,6 +33,8 @@ services:
       STAGE: "production" # Don't use production until staging works
     volumes:
       - https-portal-data:/var/lib/https-portal
+    networks:
+      - pessenger-network
 
 volumes:
   https-portal-data: # Recommended, to avoid re-signing when upgrading HTTPS-PORTAL
