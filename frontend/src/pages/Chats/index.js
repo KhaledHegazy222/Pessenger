@@ -5,10 +5,10 @@ import { serverAxios } from "../../utils";
 import { useAuth } from "../../contexts/AuthContext";
 import ChatsList from "../../components/Chat/ChatsList/ChatsList";
 import ChatMessages from "../../components/Chat/ChatMessages/ChatMessages";
-
-const ENDPOINT = "http://localhost:3001";
 import { io } from "socket.io-client";
 import withAuth from "../../HOC/withAuth";
+
+const ENDPOINT = process.env.REACT_APP_API_URL;
 
 function Chats() {
   const { auth, setAuth } = useAuth();
@@ -44,6 +44,7 @@ function Chats() {
     });
 
     return () => {
+      console.log("Failed");
       socket.disconnect();
     };
   }, [auth]);

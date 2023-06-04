@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   grid-area: 1 / 2/ 2 / 3;
-  overflow: hidden;
+  min-width: 700px;
 }
 
 .body header {
