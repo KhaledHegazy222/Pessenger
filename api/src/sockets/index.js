@@ -6,7 +6,7 @@ const socketHandler = (socket) => {
 
   socket.on("chats", async (data) => {
     const { chatID, refresh } = data;
-
+    console.log("Sending ...", socket.user.last_name);
     const chat = await getChat(chatID);
     const members = chat.members.map((member) => member._id.toString());
 
