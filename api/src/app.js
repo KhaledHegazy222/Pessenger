@@ -16,7 +16,7 @@ const corsOptions = {
   optionsSuccessStatus: 204,
 };
 
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
@@ -35,7 +35,7 @@ const { verifySocket } = require("./middlewares");
 io.use(verifySocket);
 io.on("connection", socketHandler);
 
-const port = 3001;
+const port = 8000;
 
 // server listening
 server.listen(port, () => {
