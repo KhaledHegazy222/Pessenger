@@ -10,6 +10,7 @@ exports.login = async (req, res) => {
   const { email, password } = req.body;
   let user = await User.findOne({ email });
   if (user === null || user.password !== password) {
+    console.log("What")
     return res.status(400).json({ error: "wrong email or password" });
   }
 
@@ -30,7 +31,7 @@ exports.signup = async (req, res) => {
     const token = jwt.sign(user.toObject(), ACCESS_TOKEN_SECRET);
     return res.json({ token });
   } catch (error) {
-    return res.status(400).json({ error: error.toString() });
+    return res.status(400).json({ error: error.message });
   }
 };
 

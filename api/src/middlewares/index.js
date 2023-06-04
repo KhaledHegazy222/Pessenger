@@ -12,7 +12,7 @@ exports.verifyUser = (req, res, next) => {
     const decoded = jwt.verify(token, ACCESS_TOKEN_SECRET);
     req.user = decoded;
   } catch (error) {
-    return res.status(401).json({ error: error.toString() });
+    return res.status(401).json({ error: error.message });
   }
   next();
 };

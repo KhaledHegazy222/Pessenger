@@ -30,7 +30,7 @@ exports.createChat = async (req, res) => {
       await user.save();
     });
   } catch (error) {
-    return res.status(400).json({ error: error.toString() });
+    return res.status(400).json({ error: error.message });
   }
   return res.status(200).json({ chat: { _id: chat._id } });
 };
@@ -45,7 +45,7 @@ exports.joinChat = async (req, res) => {
     user.chats.push(chat._id);
     await user.save();
   } catch (error) {
-    return res.status(400).json({ error: error.toString() });
+    return res.status(400).json({ error: error.message });
   }
   return res.sendStatus(200);
 };

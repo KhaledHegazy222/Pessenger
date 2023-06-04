@@ -8,6 +8,8 @@ import { useAuth } from "../../contexts/AuthContext";
 import { serverAxios } from "../../utils";
 import Google from "./Google";
 
+import { toast } from "react-toastify";
+
 function Account({ login }) {
   const navigate = useNavigate();
 
@@ -66,6 +68,7 @@ function Account({ login }) {
           passwordSignup.current.value &&
           passwordSignup.current.value !== confirmedPassword.current.value
         ) {
+          toast.error("passwords don't match");
           return;
         }
         const reqBody = {
@@ -80,7 +83,9 @@ function Account({ login }) {
         setAuth(token);
         localStorage.setItem("token", token);
       }
-    } catch {}
+    } catch (error) {
+      toast.error(error.response.data.error);
+    }
   };
   return (
     <main className={style.body}>

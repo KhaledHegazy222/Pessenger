@@ -13,7 +13,7 @@ exports.sendMessage = async (req, res) => {
     chat.last_updated = Date.now();
     await chat.save();
   } catch (error) {
-    return res.status(400).json({ error: error.toString() });
+    return res.status(400).json({ error: error.message });
   }
   return res.sendStatus(200);
 };
