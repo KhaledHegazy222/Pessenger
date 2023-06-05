@@ -2,6 +2,7 @@ version: "3.4"
 
 services:
   frontend:
+    restart: always
     build:
       context: frontend
       target: production
@@ -12,6 +13,7 @@ services:
       - pessenger-network
 
   api:
+    restart: always
     build:
       context: api
       target: development
@@ -22,6 +24,7 @@ services:
       - pessenger-network
 
   https-portal:
+    restart: always
     image: steveltn/https-portal:1
     ports:
       - "80:80"
