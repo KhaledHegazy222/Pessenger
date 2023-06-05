@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import Select from "react-select";
 import { useAuth } from "../../../contexts/AuthContext";
 import { serverAxios } from "../../../utils";
-import { PlusCircle } from "react-bootstrap-icons";
+import { PlusCircle, ArrowRight, ArrowLeft } from "react-bootstrap-icons";
 
 function ChatsList({ chats, announceMessage }) {
   const navigate = useNavigate();
@@ -16,6 +16,7 @@ function ChatsList({ chats, announceMessage }) {
   const [selectedUsers, setSelectedUsers] = useState([]);
   const [chatName, setChatName] = useState("");
   const [users, setUsers] = useState([]);
+  const [showChats, setShowChats] = useState(false);
   useEffect(() => {
     fetchUsers();
     async function fetchUsers() {
@@ -102,11 +103,15 @@ function ChatsList({ chats, announceMessage }) {
           </form>
         </div>
       </Popup>
-      <div className={style.body}>
+      <div className={style.body + " " + (showChats ? style.showChat : style.hideChat)}>
         <header>
           <h2>Messages</h2>
           <div>
-            <button onClick={() => setShowDialog(true)}>
+            <button
+              onClick={() => {
+                setShowDialog(true);
+                setShowChats(false);
+              }}>
               <PlusCircle />
               <p>Create Chat</p>
             </button>
@@ -125,6 +130,7 @@ function ChatsList({ chats, announceMessage }) {
                   key={chat._id}
                   onClick={() => {
                     navigate(`/chats/${chat._id}`);
+                    setShowChats(false);
                   }}>
                   <img src={profileImage} />
                   <p>{chat.name}</p>
@@ -133,6 +139,21 @@ function ChatsList({ chats, announceMessage }) {
             })}
         </ul>
       </div>
+
+      <button
+        className={style.buttonInternal + " " + (showChats ? style.showButton : style.hideButton)}
+        onClick={() => {
+          setShowChats((prev) => !prev);
+        }}>
+        <ArrowLeft />
+      </button>
+      <button
+        className={style.buttonExternal + " " + (showChats ? style.hideButton : style.showButton)}
+        onClick={() => {
+          setShowChats((prev) => !prev);
+        }}>
+        <ArrowRight />
+      </button>
     </>
   );
 }

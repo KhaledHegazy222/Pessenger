@@ -46,6 +46,9 @@ function Chats() {
       setChats(data.chats);
     });
 
+    socket.on("connect_error", (err) => {
+      console.log(err);
+    });
     return () => {
       socket.disconnect();
     };

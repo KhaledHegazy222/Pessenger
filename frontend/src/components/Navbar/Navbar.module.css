@@ -5,6 +5,7 @@
   padding: 10px 30px;
   background-color: white;
   position: sticky;
+  z-index: 3;
   top: 0;
   left: 0;
 }

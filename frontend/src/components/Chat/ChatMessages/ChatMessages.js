@@ -57,7 +57,11 @@ function ChatMessages({ chats, setChats, announceMessage }) {
         copy[chatIndex].messages.push({
           _id: uuidv4(),
           content,
-          from: user._id,
+          from: {
+            _id: user._id,
+            first_name: user.first_name,
+            last_name: user.last_name
+          },
           pending: true
         });
         return copy;
@@ -79,7 +83,11 @@ function ChatMessages({ chats, setChats, announceMessage }) {
         copy[chatIndex].messages[copy[chatIndex].messages.length - 1] = {
           _id: uuidv4(),
           content,
-          from: user._id,
+          from: {
+            _id: user._id,
+            first_name: user.first_name,
+            last_name: user.last_name
+          },
           pending: false
         };
         return copy;
@@ -102,13 +110,17 @@ function ChatMessages({ chats, setChats, announceMessage }) {
               return (
                 <li
                   key={message._id}
-                  className={message.from === user._id ? style.userMessage : style.othersMessage}>
+                  className={
+                    message.from._id === user._id ? style.userMessage : style.othersMessage
+                  }>
                   <div className={style.messageBody}>
-                    {user._id !== message.from && <h2>{`${user.first_name} ${user.last_name}`}</h2>}
+                    {user._id !== message.from._id && (
+                      <h2>{`${message.from.first_name} ${message.from.last_name}`}</h2>
+                    )}
                     {message.content}
                   </div>
                   <div className={message.pending ? style.messagePending : style.messageSent}>
-                    {!message.pending && message.from === user._id && <Check />}
+                    {!message.pending && message.from._id === user._id && <Check />}
                   </div>
                 </li>
               );

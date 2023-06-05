@@ -8,6 +8,7 @@ services:
     volumes:
       - ./frontend:/app
       - /app/node_modules
+      - ./frontend/nginx.conf:/etc/nginx/nginx.conf
     ports:
       - 3000:3000
 

@@ -6,7 +6,6 @@ const socketHandler = (socket) => {
 
   socket.on("chats", async (data) => {
     const { chatID, refresh } = data;
-
     const chat = await getChat(chatID);
     const members = chat.members.map((member) => member._id.toString());
 
@@ -14,6 +13,7 @@ const socketHandler = (socket) => {
       const memberSocket = connectedUsers.get(member);
       if (memberSocket && (refresh || member !== socket.user._id)) {
         const user = await getUser(member);
+        console.log("sending .... " + member);
         memberSocket.emit("chats", { chats: user.chats });
       }
     });

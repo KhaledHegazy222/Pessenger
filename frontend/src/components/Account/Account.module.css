@@ -161,7 +161,7 @@
 
 @media screen and (max-width: 1200px) {
   .body {
-    min-height: 100vh;
+    min-height: 130vh;
   }
   .bodyContent {
     position: absolute;
