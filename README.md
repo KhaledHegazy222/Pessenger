@@ -28,7 +28,7 @@ Here are a few screenshots showcasing the Pessenger application:
 
 ## Try It Out
 
-To try out Pessenger, you can access the deployed application at [pessenger.duckdns.org](http://pessenger.duckdns.org/).
+To try out Pessenger, you can access the deployed application at [pessenger.duckdns.org](http://pessenger.online).
 
 ## Development
 
