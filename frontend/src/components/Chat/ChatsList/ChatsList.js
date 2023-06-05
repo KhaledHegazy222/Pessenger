@@ -107,7 +107,11 @@ function ChatsList({ chats, announceMessage }) {
         <header>
           <h2>Messages</h2>
           <div>
-            <button onClick={() => setShowDialog(true)}>
+            <button
+              onClick={() => {
+                setShowDialog(true);
+                setShowChats(false);
+              }}>
               <PlusCircle />
               <p>Create Chat</p>
             </button>
