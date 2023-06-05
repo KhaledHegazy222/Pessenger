@@ -1,28 +1,22 @@
 require("dotenv").config();
 require("./config/database").connect();
 
+const http = require("http");
 const express = require("express");
 const app = express();
-
-const http = require("http");
 const server = http.createServer(app);
 
 const cors = require("cors");
-
 const corsOptions = {
-  origin: "*", // Replace with the appropriate origin URL of your client-side app
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-  preflightContinue: false,
-  optionsSuccessStatus: 204,
+  origin: "*", // All any origin
 };
-
 app.use(cors(corsOptions));
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 const userRouter = require("./routes/user");
 const chatRouter = require("./routes/chat");
-
 app.use("/api/account", userRouter);
 app.use("/api/chats", chatRouter);
 
@@ -35,9 +29,8 @@ const { verifySocket } = require("./middlewares");
 io.use(verifySocket);
 io.on("connection", socketHandler);
 
-const port = 8000;
-
 // server listening
+const port = 8000;
 server.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });

@@ -18,8 +18,6 @@ services:
     volumes:
       - ./api:/app
       - /app/node_modules
-    ports:
-      - 8000:8000
     networks:
       - pessenger-network
 
@@ -30,7 +28,7 @@ services:
       - "443:443"
     environment:
       DOMAINS: "api.pessenger.duckdns.org -> http://api:8000, pessenger.duckdns.org -> http://frontend:80"
-      STAGE: "production" # Don't use production until staging works
+      STAGE: "production"
       WEBSOCKET: true
     volumes:
       - https-portal-data:/var/lib/https-portal
