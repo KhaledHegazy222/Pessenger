@@ -38,7 +38,7 @@
   border: none;
   background-color: rgb(175, 85, 36);
   color: white;
-  font-size: clamp(1.4rem, 1.5vw, 3.6rem);
+  font-size: clamp(1.2rem, 1.1vw, 3.6rem);
   white-space: nowrap;
   font-weight: 500;
   transition: all 500ms;

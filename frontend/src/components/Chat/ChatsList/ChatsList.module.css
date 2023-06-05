@@ -21,6 +21,7 @@
   font-size: 1.8rem;
 }
 .body header button {
+  margin: 10px 30px;
   background-color: transparent;
   border: none;
   color: rgb(175, 85, 36);
@@ -32,6 +33,7 @@
   position: absolute;
   top: 100%;
   left: 50%;
+
   transform: translateX(-50%);
   color: white;
   background-color: rgb(63, 63, 67);
