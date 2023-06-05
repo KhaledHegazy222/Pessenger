@@ -11,8 +11,6 @@ services:
       - /app/node_modules
     networks:
       - pessenger-network
-    ports:
-      - 3000:3000
 
   api:
     restart: always
@@ -24,8 +22,7 @@ services:
       - /app/node_modules
     networks:
       - pessenger-network
-    ports:
-      - 8000:8000
+
   https-portal:
     restart: always
     image: steveltn/https-portal:1
@@ -33,7 +30,7 @@ services:
       - "80:80"
       - "443:443"
     environment:
-      DOMAINS: "pessenger.duckdns.org -> http://frontend:3000 , api.pessenger.duckdns.org -> http://api:8000"
+      DOMAINS: "pessenger.duckdns.org -> http://frontend , api.pessenger.duckdns.org -> http://api:8000"
       STAGE: "production"
       WEBSOCKET: true
     volumes:
