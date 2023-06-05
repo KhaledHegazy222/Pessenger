@@ -11,6 +11,8 @@ services:
       - /app/node_modules
     networks:
       - pessenger-network
+    ports:
+      - 3000:3000
 
   api:
     restart: always
@@ -22,7 +24,8 @@ services:
       - /app/node_modules
     networks:
       - pessenger-network
-
+    ports:
+      - 8000:8000
   https-portal:
     restart: always
     image: steveltn/https-portal:1
