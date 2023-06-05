@@ -9,12 +9,16 @@ exports.getUser = async (userID) => {
     path: "chats",
     populate: {
       path: "messages",
+      populate: {
+        path: "from",
+      },
     },
   });
   return user;
 };
 exports.getAllChats = async (req, res) => {
   const user = await this.getUser(req.user._id);
+
   return res.status(200).json({ chats: user.chats });
 };
 

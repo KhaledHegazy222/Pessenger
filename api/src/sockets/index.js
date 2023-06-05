@@ -13,6 +13,7 @@ const socketHandler = (socket) => {
       const memberSocket = connectedUsers.get(member);
       if (memberSocket && (refresh || member !== socket.user._id)) {
         const user = await getUser(member);
+        console.log("sending .... " + member);
         memberSocket.emit("chats", { chats: user.chats });
       }
     });
