@@ -32,7 +32,7 @@ To try out Pessenger, you can access the deployed application at [pessenger.onli
 
 ## Development
 
-If you prefer to run the application without Docker for development purposes, follow these steps:
+If you prefer to run the application for development purposes, follow these steps:
 
 1. Install Docker on your machine if you haven't already.
 2. Clone the repository: `git clone https://github.com/KhaledHegazy222/Pessenger.git`
