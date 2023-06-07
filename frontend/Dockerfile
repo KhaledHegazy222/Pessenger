@@ -18,7 +18,7 @@ WORKDIR /app
 
 COPY package* ./
 
-RUN npm install
+RUN npm install --omit=dev
 
 COPY ./ ./
 
