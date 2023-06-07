@@ -9,29 +9,20 @@ import messageImage from "../../../assets/gifs/message.gif";
 import { Check, SendFill } from "react-bootstrap-icons";
 import { v4 as uuidv4 } from "uuid";
 import { toast } from "react-toastify";
+import { Spinner } from "react-bootstrap";
 
-function ChatMessages({ chats, setChats, announceMessage }) {
+function ChatMessages({ chats, setChats, announceMessage, connected }) {
   const { chatID } = useParams();
-  const { auth } = useAuth();
+  const { auth, user } = useAuth();
   const [selectedChat, setSelectedChat] = useState({});
-  const [user, setUser] = useState({});
+
   const messageListRef = useRef();
   const messageInputRef = useRef();
 
   useEffect(() => {
     if (chatID) {
-      setSelectedChat(chats.find((chat) => chat._id === chatID));
-    }
-    fetchUser();
-    async function fetchUser() {
-      try {
-        const response = await serverAxios("/api/account/user", {
-          headers: { Authorization: `Bearer ${auth}` }
-        });
-        setUser(response.data);
-      } catch (error) {
-        toast.error(error.response.data.error);
-      }
+      const chat = chats.find((chat) => chat._id === chatID);
+      if (chat) setSelectedChat(chat);
     }
   }, [chatID, chats]);
 
@@ -104,7 +95,16 @@ function ChatMessages({ chats, setChats, announceMessage }) {
         <>
           <header>
             <h2>{selectedChat.name}</h2>
+            {connected ? (
+              <p className={style.connected}>Connected</p>
+            ) : (
+              <p className={style.disconnected}>
+                Disconnected
+                <Spinner className={style.spinner} />
+              </p>
+            )}
           </header>
+
           <ul ref={messageListRef}>
             {selectedChat.messages.map((message) => {
               return (

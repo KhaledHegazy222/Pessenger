@@ -10,7 +10,32 @@
   border: 1px solid gainsboro;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: 20px;
+}
+
+.body header > p {
+  margin: 0;
+  padding: 5px 15px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.body header > p.connected {
+  background-color: lightgreen;
+}
+.body header > p.disconnected {
+  background-color: rgb(207, 102, 102);
+}
+.spinner {
+  width: 20px;
+  height: 20px;
+  font-size: 0.6rem;
 }
 
 .body header h2 {

@@ -48,10 +48,11 @@ function ChatsList({ chats, announceMessage }) {
 
     setChatName("");
     setSelectedUsers([]);
-
     announceMessage(response.data.chat._id, true);
 
     setShowDialog(false);
+    console.log(response.data.chat._id)
+    navigate(`/chats/${response.data.chat._id}`);
   };
 
   const customStyles = {

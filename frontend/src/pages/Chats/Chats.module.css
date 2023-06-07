@@ -1,3 +1,10 @@
+.spinnerBody {
+  height: calc(100vh - 61px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .pageLayout {
   width: 100vw;
   display: grid;

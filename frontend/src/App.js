@@ -1,6 +1,7 @@
 import "@fontsource/inter";
-import "./App.css";
 import "react-toastify/dist/ReactToastify.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
 import routes from "./pages/routes";
 import { useAuth } from "./contexts/AuthContext";
 import { ToastContainer } from "react-toastify";
