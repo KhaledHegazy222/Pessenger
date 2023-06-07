@@ -18,11 +18,11 @@ WORKDIR /app
 
 COPY package* ./
 
-RUN npm install --omit=dev
+# RUN npm install --omit=dev
 
 COPY ./ ./
 
-RUN npm run build
+# RUN npm run build
 
 FROM nginx:1.18-alpine as production
 
