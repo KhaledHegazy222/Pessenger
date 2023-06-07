@@ -14,8 +14,6 @@ services:
       - pessenger-network
     ports:
       - 3000:3000
-    env_file:
-      - ./frontend/.env.prod
   api:
     restart: always
     build:
@@ -36,7 +34,7 @@ services:
       - "80:80"
       - "443:443"
     environment:
-      DOMAINS: "pessenger.online -> http://frontend:3000, www.pessenger.online => https://pessenger.online , api.pessenger.online -> http://api:8000 , "
+      DOMAINS: "pessenger.online -> http://frontend:3000, www.pessenger.online => https://pessenger.online , api.pessenger.online -> http://api:8000"
       STAGE: "production"
       WEBSOCKET: true
     volumes:
