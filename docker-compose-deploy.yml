@@ -34,7 +34,7 @@ services:
       - "80:80"
       - "443:443"
     environment:
-      DOMAINS: "pessenger.online -> http://frontend:3000, www.pessenger.online => https://pessenger.online , api.pessenger.online -> http://api:8000"
+      DOMAINS: "pessenger.online -> http://frontend:3000, api.pessenger.duckdns.org -> http://api:8000"
       STAGE: "production"
       WEBSOCKET: true
     volumes:
